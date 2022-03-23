@@ -313,7 +313,6 @@
         let pagina = 1;
 
         function CompletarDatos() {
-
             let contenedor = document.getElementById('contenedor');
             contenedor.innerHTML = '';
 
@@ -360,9 +359,8 @@
                         contenedor.append(div1);
                     }
                 };
-                xmlhttp.open("GET", url, true);
+                xmlhttp.open("GET", url, false);
                 xmlhttp.send();
-
             }
         }
 
