@@ -86,7 +86,7 @@
         </div>
 
         <div class="row row-cols-1 row-cols-md-5 g-4" id="contenedor">
-            
+
         </div>
 
         <div class="row mb-3 mt-2">
@@ -108,251 +108,237 @@
             listaPokemons = [];
 
             for (let index = (pagina * 20 - 19); index <= (pagina * 20); index++) {
-
-                let promesa = new Promise(function (resolve, reject) {
-                    let xmlhttp = new XMLHttpRequest();
-                    let url = 'https://pokeapi.co/api/v2/pokemon-form/' + index;
-
-                    xmlhttp.onload = function () {
-                        if (this.status == 200) {
-
-                            resolve(JSON.parse(this.responseText));
-                        }
-                        else {
-                            resolve('error');
-                        }
-                    };
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                });
-                listaPokemons.push(promesa);
+                listaPokemons.push(fetch('https://pokeapi.co/api/v2/pokemon-form/' + index).then(response => response.json()));
             }
-            Promise.all(listaPokemons)
+
+            Promise.allSettled(listaPokemons)
+                .then(result => result.filter(x => x.status === "fulfilled"))
                 .then(result => {
-                    contenedor.innerHTML = '';
-                    result.map(pokemon => {
-                        let div1 = document.createElement('div');
-                        let div2 = document.createElement('div');
-                        let img = document.createElement('img');
-                        let div3 = document.createElement('div');
-                        let p1 = document.createElement('p');
-                        let p2 = document.createElement('p');
-                        let p3 = document.createElement('p');
+                    contenedor.innerHTML = ''
+                    return result.map(pokemons => pokemons.value)
+                })
+                .then(result => result.map(pokemon => {
+                    let div1 = document.createElement('div');
+                    let div2 = document.createElement('div');
+                    let img = document.createElement('img');
+                    let div3 = document.createElement('div');
+                    let p1 = document.createElement('p');
+                    let p2 = document.createElement('p');
+                    let p3 = document.createElement('p');
 
-                        div1.className = 'col';
-                        div2.className = 'card text-dark bg-light';
-                        img.className = 'card-img-top';
-                        div3.className = 'card-body';
-                        p1.className = 'card-text text-center';
-                        p2.className = 'card-text text-center fw-bolder';
-                        p3.className = 'card-text text-center';
+                    div1.className = 'col';
+                    div2.className = 'card text-dark bg-light';
+                    img.className = 'card-img-top';
+                    div3.className = 'card-body';
+                    p1.className = 'card-text text-center';
+                    p2.className = 'card-text text-center fw-bolder';
+                    p3.className = 'card-text text-center';
 
-                        img.src = pokemon.sprites.front_default;
-                        img.alt = pokemon.name;
-                        p1.innerText = '#' + pokemon.id;
-                        p2.innerText = pokemon.name;
+                    img.src = pokemon.sprites.front_default;
+                    img.alt = pokemon.name;
+                    p1.innerText = '#' + pokemon.id;
+                    p2.innerText = pokemon.name;
 
-                        if (pokemon.types.length > 1) {
-                            switch (pokemon.types[0].type.name) {
-                                case 'fighting':
-                                    p3.innerText = 'Tipo: lucha';
-                                    break;
-                                case 'flying':
-                                    p3.innerText = 'Tipo: volador';
-                                    break;
-                                case 'poison':
-                                    p3.innerText = 'Tipo: veneno';
-                                    break;
-                                case 'ground':
-                                    p3.innerText = 'Tipo: tierra';
-                                    break;
-                                case 'rock':
-                                    p3.innerText = 'Tipo: roca';
-                                    break;
-                                case 'bug':
-                                    p3.innerText = 'Tipo: bicho';
-                                    break;
-                                case 'ghost':
-                                    p3.innerText = 'Tipo: fantasma';
-                                    break;
-                                case 'steel':
-                                    p3.innerText = 'Tipo: acero';
-                                    break;
-                                case 'fire':
-                                    p3.innerText = 'Tipo: fuego';
-                                    break;
-                                case 'water':
-                                    p3.innerText = 'Tipo: agua';
-                                    break;
-                                case 'grass':
-                                    p3.innerText = 'Tipo: planta';
-                                    break;
-                                case 'electric':
-                                    p3.innerText = 'Tipo: eléctrico';
-                                    break;
-                                case 'psychic':
-                                    p3.innerText = 'Tipo: psíquico';
-                                    break;
-                                case 'ice':
-                                    p3.innerText = 'Tipo: hielo';
-                                    break;
-                                case 'dragon':
-                                    p3.innerText = 'Tipo: dragón';
-                                    break;
-                                case 'dark':
-                                    p3.innerText = 'Tipo: siniestro';
-                                    break;
-                                case 'fairy':
-                                    p3.innerText = 'Tipo: hada';
-                                    break;
-                                case 'unknown':
-                                    p3.innerText = 'Tipo: (?)';
-                                    break;
-                                case 'shadow':
-                                    p3.innerText = 'Tipo: oscuro';
-                                    break;
-                                default:
-                                    p3.innerText = 'Tipo: ' + pokemon.types[0].type.name;
-                                    break;
-                            }
-
-                            switch (pokemon.types[1].type.name) {
-                                case 'fighting':
-                                    p3.innerText += ' y lucha';
-                                    break;
-                                case 'flying':
-                                    p3.innerText += ' y volador';
-                                    break;
-                                case 'poison':
-                                    p3.innerText += ' y veneno';
-                                    break;
-                                case 'ground':
-                                    p3.innerText += ' y tierra';
-                                    break;
-                                case 'rock':
-                                    p3.innerText += ' y roca';
-                                    break;
-                                case 'bug':
-                                    p3.innerText += ' y bicho';
-                                    break;
-                                case 'ghost':
-                                    p3.innerText += ' y fantasma';
-                                    break;
-                                case 'steel':
-                                    p3.innerText += ' y acero';
-                                    break;
-                                case 'fire':
-                                    p3.innerText += ' y fuego';
-                                    break;
-                                case 'water':
-                                    p3.innerText += ' y agua';
-                                    break;
-                                case 'grass':
-                                    p3.innerText += ' y planta';
-                                    break;
-                                case 'electric':
-                                    p3.innerText += ' y eléctrico';
-                                    break;
-                                case 'psychic':
-                                    p3.innerText += ' y psíquico';
-                                    break;
-                                case 'ice':
-                                    p3.innerText += ' y hielo';
-                                    break;
-                                case 'dragon':
-                                    p3.innerText += ' y dragón';
-                                    break;
-                                case 'dark':
-                                    p3.innerText += ' y siniestro';
-                                    break;
-                                case 'fairy':
-                                    p3.innerText += ' y hada';
-                                    break;
-                                case 'unknown':
-                                    p3.innerText += ' y (?)';
-                                    break;
-                                case 'shadow':
-                                    p3.innerText += ' y oscuro';
-                                    break;
-                                default:
-                                    p3.innerText += ' y ' + pokemon.types[1].type.name;
-                                    break;
-                            }
-                        }
-                        else {
-                            switch (pokemon.types[0].type.name) {
-                                case 'fighting':
-                                    p3.innerText = 'Tipo: lucha';
-                                    break;
-                                case 'flying':
-                                    p3.innerText = 'Tipo: volador';
-                                    break;
-                                case 'poison':
-                                    p3.innerText = 'Tipo: veneno';
-                                    break;
-                                case 'ground':
-                                    p3.innerText = 'Tipo: tierra';
-                                    break;
-                                case 'rock':
-                                    p3.innerText = 'Tipo: roca';
-                                    break;
-                                case 'bug':
-                                    p3.innerText = 'Tipo: bicho';
-                                    break;
-                                case 'ghost':
-                                    p3.innerText = 'Tipo: fantasma';
-                                    break;
-                                case 'steel':
-                                    p3.innerText = 'Tipo: acero';
-                                    break;
-                                case 'fire':
-                                    p3.innerText = 'Tipo: fuego';
-                                    break;
-                                case 'water':
-                                    p3.innerText = 'Tipo: agua';
-                                    break;
-                                case 'grass':
-                                    p3.innerText = 'Tipo: planta';
-                                    break;
-                                case 'electric':
-                                    p3.innerText = 'Tipo: eléctrico';
-                                    break;
-                                case 'psychic':
-                                    p3.innerText = 'Tipo: psíquico';
-                                    break;
-                                case 'ice':
-                                    p3.innerText = 'Tipo: hielo';
-                                    break;
-                                case 'dragon':
-                                    p3.innerText = 'Tipo: dragón';
-                                    break;
-                                case 'dark':
-                                    p3.innerText = 'Tipo: siniestro';
-                                    break;
-                                case 'fairy':
-                                    p3.innerText = 'Tipo: hada';
-                                    break;
-                                case 'unknown':
-                                    p3.innerText = 'Tipo: (?)';
-                                    break;
-                                case 'shadow':
-                                    p3.innerText = 'Tipo: oscuro';
-                                    break;
-                                default:
-                                    p3.innerText = 'Tipo: ' + pokemon.types[0].type.name;
-                                    break;
-                            }
+                    if (pokemon.types.length > 1) {
+                        switch (pokemon.types[0].type.name) {
+                            case 'fighting':
+                                p3.innerText = 'Tipo: lucha';
+                                break;
+                            case 'flying':
+                                p3.innerText = 'Tipo: volador';
+                                break;
+                            case 'poison':
+                                p3.innerText = 'Tipo: veneno';
+                                break;
+                            case 'ground':
+                                p3.innerText = 'Tipo: tierra';
+                                break;
+                            case 'rock':
+                                p3.innerText = 'Tipo: roca';
+                                break;
+                            case 'bug':
+                                p3.innerText = 'Tipo: bicho';
+                                break;
+                            case 'ghost':
+                                p3.innerText = 'Tipo: fantasma';
+                                break;
+                            case 'steel':
+                                p3.innerText = 'Tipo: acero';
+                                break;
+                            case 'fire':
+                                p3.innerText = 'Tipo: fuego';
+                                break;
+                            case 'water':
+                                p3.innerText = 'Tipo: agua';
+                                break;
+                            case 'grass':
+                                p3.innerText = 'Tipo: planta';
+                                break;
+                            case 'electric':
+                                p3.innerText = 'Tipo: eléctrico';
+                                break;
+                            case 'psychic':
+                                p3.innerText = 'Tipo: psíquico';
+                                break;
+                            case 'ice':
+                                p3.innerText = 'Tipo: hielo';
+                                break;
+                            case 'dragon':
+                                p3.innerText = 'Tipo: dragón';
+                                break;
+                            case 'dark':
+                                p3.innerText = 'Tipo: siniestro';
+                                break;
+                            case 'fairy':
+                                p3.innerText = 'Tipo: hada';
+                                break;
+                            case 'unknown':
+                                p3.innerText = 'Tipo: (?)';
+                                break;
+                            case 'shadow':
+                                p3.innerText = 'Tipo: oscuro';
+                                break;
+                            default:
+                                p3.innerText = 'Tipo: ' + pokemon.types[0].type.name;
+                                break;
                         }
 
-                        div3.append(p1);
-                        div3.append(p2);
-                        div3.append(p3);
-                        div2.append(img);
-                        div2.append(div3);
-                        div1.append(div2);
-                        contenedor.append(div1);
-                    });
-                });
+                        switch (pokemon.types[1].type.name) {
+                            case 'fighting':
+                                p3.innerText += ' y lucha';
+                                break;
+                            case 'flying':
+                                p3.innerText += ' y volador';
+                                break;
+                            case 'poison':
+                                p3.innerText += ' y veneno';
+                                break;
+                            case 'ground':
+                                p3.innerText += ' y tierra';
+                                break;
+                            case 'rock':
+                                p3.innerText += ' y roca';
+                                break;
+                            case 'bug':
+                                p3.innerText += ' y bicho';
+                                break;
+                            case 'ghost':
+                                p3.innerText += ' y fantasma';
+                                break;
+                            case 'steel':
+                                p3.innerText += ' y acero';
+                                break;
+                            case 'fire':
+                                p3.innerText += ' y fuego';
+                                break;
+                            case 'water':
+                                p3.innerText += ' y agua';
+                                break;
+                            case 'grass':
+                                p3.innerText += ' y planta';
+                                break;
+                            case 'electric':
+                                p3.innerText += ' y eléctrico';
+                                break;
+                            case 'psychic':
+                                p3.innerText += ' y psíquico';
+                                break;
+                            case 'ice':
+                                p3.innerText += ' y hielo';
+                                break;
+                            case 'dragon':
+                                p3.innerText += ' y dragón';
+                                break;
+                            case 'dark':
+                                p3.innerText += ' y siniestro';
+                                break;
+                            case 'fairy':
+                                p3.innerText += ' y hada';
+                                break;
+                            case 'unknown':
+                                p3.innerText += ' y (?)';
+                                break;
+                            case 'shadow':
+                                p3.innerText += ' y oscuro';
+                                break;
+                            default:
+                                p3.innerText += ' y ' + pokemon.types[1].type.name;
+                                break;
+                        }
+                    }
+                    else {
+                        switch (pokemon.types[0].type.name) {
+                            case 'fighting':
+                                p3.innerText = 'Tipo: lucha';
+                                break;
+                            case 'flying':
+                                p3.innerText = 'Tipo: volador';
+                                break;
+                            case 'poison':
+                                p3.innerText = 'Tipo: veneno';
+                                break;
+                            case 'ground':
+                                p3.innerText = 'Tipo: tierra';
+                                break;
+                            case 'rock':
+                                p3.innerText = 'Tipo: roca';
+                                break;
+                            case 'bug':
+                                p3.innerText = 'Tipo: bicho';
+                                break;
+                            case 'ghost':
+                                p3.innerText = 'Tipo: fantasma';
+                                break;
+                            case 'steel':
+                                p3.innerText = 'Tipo: acero';
+                                break;
+                            case 'fire':
+                                p3.innerText = 'Tipo: fuego';
+                                break;
+                            case 'water':
+                                p3.innerText = 'Tipo: agua';
+                                break;
+                            case 'grass':
+                                p3.innerText = 'Tipo: planta';
+                                break;
+                            case 'electric':
+                                p3.innerText = 'Tipo: eléctrico';
+                                break;
+                            case 'psychic':
+                                p3.innerText = 'Tipo: psíquico';
+                                break;
+                            case 'ice':
+                                p3.innerText = 'Tipo: hielo';
+                                break;
+                            case 'dragon':
+                                p3.innerText = 'Tipo: dragón';
+                                break;
+                            case 'dark':
+                                p3.innerText = 'Tipo: siniestro';
+                                break;
+                            case 'fairy':
+                                p3.innerText = 'Tipo: hada';
+                                break;
+                            case 'unknown':
+                                p3.innerText = 'Tipo: (?)';
+                                break;
+                            case 'shadow':
+                                p3.innerText = 'Tipo: oscuro';
+                                break;
+                            default:
+                                p3.innerText = 'Tipo: ' + pokemon.types[0].type.name;
+                                break;
+                        }
+                    }
+
+                    div3.append(p1);
+                    div3.append(p2);
+                    div3.append(p3);
+                    div2.append(img);
+                    div2.append(div3);
+                    div1.append(div2);
+                    contenedor.append(div1);
+                }));
         }
 
         function SetearPagina(numero) {
