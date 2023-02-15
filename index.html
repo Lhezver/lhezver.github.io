@@ -10,10 +10,11 @@
     <meta property="og:title" content="PokéAPI">
     <meta property="og:image" content="https://pokeapi.co/pokeapi_192_square.png">
     <meta property="og:description" content="Frontend HTML5, CSS3 y JavaScript que consume la API PokéAPI">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
 </head>
 
@@ -27,61 +28,16 @@
 
         <div class="row mb-2">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()">
-                    < </button>
-                        <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
+                <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()"> < </button>
+                <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
 
-                        <div class="btn-group" role="group">
-                            <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle"
-                                data-bs-toggle="dropdown" aria-expanded="false">Índice</button>
-                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(1)">1</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(2)">2</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(3)">3</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(4)">4</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(5)">5</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(6)">6</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(7)">7</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(8)">8</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(9)">9</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(10)">10</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(11)">11</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(12)">12</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(13)">13</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(14)">14</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(15)">15</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(16)">16</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(17)">17</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(18)">18</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(19)">19</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(20)">20</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(21)">21</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(22)">22</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(23)">23</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(24)">24</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(25)">25</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(26)">26</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(27)">27</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(28)">28</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(29)">29</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(30)">30</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(31)">31</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(32)">32</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(33)">33</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(34)">34</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(35)">35</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(36)">36</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(37)">37</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(38)">38</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(39)">39</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(40)">40</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(41)">41</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(42)">42</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(43)">43</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(44)">44</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(45)">45</a></li>
-                            </ul>
-                        </div>
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">Índice</button>
+                    <ul id="menu" class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                        <li><a class="dropdown-item" href="#" onclick="SetearPagina(1)">1</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -91,9 +47,8 @@
 
         <div class="row mb-3 mt-2">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()">
-                    < </button>
-                        <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
+                <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()"> < </button>
+                <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
             </div>
         </div>
     </div>
@@ -101,7 +56,14 @@
     <script>
         let pagina = 1;
         let listaPokemons = [];
-        let contenedor = document.getElementById('contenedor');
+        const contenedor = document.getElementById('contenedor');
+
+        const dropdown = document.getElementById('menu');
+        const ultimaPagina = 51;
+        dropdown.innerHTML = '';
+        for (let i = 1; i <= ultimaPagina; i++) {
+            dropdown.innerHTML += '<li><a class="dropdown-item" onclick="SetearPagina(' + i + ')">' + i + '</a></li>';
+        }
 
         function CompletarDatos() {
             contenedor.innerHTML = '<div class="col"><h2 class="text-center">Cargando...</h2></div>';
@@ -354,7 +316,7 @@
         }
 
         function AdelantarPagina() {
-            if (!(pagina >= 45)) {
+            if (!(pagina >= ultimaPagina)) {
                 pagina++;
                 CompletarDatos();
             }
