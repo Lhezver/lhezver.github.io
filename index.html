@@ -16,6 +16,80 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+        <style>
+            .text-bg-normal {
+                color: black;
+                background-color: #A8A77A;
+            }
+            .text-bg-fire {
+                color: black;
+                background-color: #EE8130;
+            }
+            .text-bg-water {
+                color: white;
+                background-color: #6390F0;
+            }
+            .text-bg-electric {
+                color: black;
+                background-color: #F7D02C;
+            }
+            .text-bg-grass {
+                color: black;
+                background-color: #7AC74C;
+            }
+            .text-bg-ice {
+                color: black;
+                background-color: #96D9D6;
+            }
+            .text-bg-fighting {
+                color: white;
+                background-color: #C22E28;
+            }
+            .text-bg-poison {
+                color: white;
+                background-color: #A33EA1;
+            }
+            .text-bg-ground {
+                color: black;
+                background-color: #E2BF65;
+            }
+            .text-bg-flying {
+                color: black;
+                background-color: #A98FF3;
+            }
+            .text-bg-psychic {
+                color: white;
+                background-color: #F95587;
+            }
+            .text-bg-bug {
+                color: black;
+                background-color: #A6B91A;
+            }
+            .text-bg-rock {
+                color: black;
+                background-color: #B6A136;
+            }
+            .text-bg-ghost {
+                color: white;
+                background-color: #735797;
+            }
+            .text-bg-dragon {
+                color: white;
+                background-color: #6F35FC;
+            }
+            .text-bg-dark {
+                color: black;
+                background-color: #705746!important;
+            }
+            .text-bg-steel {
+                color: black;
+                background-color: #B7B7CE;
+            }
+            .text-bg-fairy {
+                color: black;
+                background-color: #D685AD;
+            }
+        </style>
 </head>
 
 <body>
@@ -29,6 +103,7 @@
         <div class="row mb-2">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()"> < </button>
+                <button type="button" id="paginaActual1" class="btn btn-outline-primary" disabled></button>
                 <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
 
                 <div class="btn-group" role="group">
@@ -48,6 +123,7 @@
         <div class="row mb-3 mt-2">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()"> < </button>
+                <button type="button" id="paginaActual2" class="btn btn-outline-primary" disabled></button>
                 <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
             </div>
         </div>
@@ -67,6 +143,8 @@
 
         function CompletarDatos() {
             contenedor.innerHTML = '<div class="col"><h2 class="text-center">Cargando...</h2></div>';
+            document.getElementById('paginaActual1').innerText = pagina;
+            document.getElementById('paginaActual2').innerText = pagina;
             listaPokemons = [];
 
             for (let index = (pagina * 20 - 19); index <= (pagina * 20); index++) {
@@ -104,191 +182,200 @@
                     if (pokemon.types.length > 1) {
                         switch (pokemon.types[0].type.name) {
                             case 'fighting':
-                                p3.innerText = 'Tipo: lucha';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-fighting">lucha</span>';
                                 break;
                             case 'flying':
-                                p3.innerText = 'Tipo: volador';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-flying">volador</span>';
                                 break;
                             case 'poison':
-                                p3.innerText = 'Tipo: veneno';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-poison">veneno</span>';
                                 break;
                             case 'ground':
-                                p3.innerText = 'Tipo: tierra';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-ground">tierra</span>';
                                 break;
                             case 'rock':
-                                p3.innerText = 'Tipo: roca';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-rock">roca</span>';
                                 break;
                             case 'bug':
-                                p3.innerText = 'Tipo: bicho';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-bug">bicho</span>';
                                 break;
                             case 'ghost':
-                                p3.innerText = 'Tipo: fantasma';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-ghost">fantasma</span>';
                                 break;
                             case 'steel':
-                                p3.innerText = 'Tipo: acero';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-steel">acero</span>';
                                 break;
                             case 'fire':
-                                p3.innerText = 'Tipo: fuego';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-fire">fuego</span>';
                                 break;
                             case 'water':
-                                p3.innerText = 'Tipo: agua';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-water">agua</span>';
                                 break;
                             case 'grass':
-                                p3.innerText = 'Tipo: planta';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-grass">planta</span>';
                                 break;
                             case 'electric':
-                                p3.innerText = 'Tipo: eléctrico';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-electric">eléctrico</span>';
                                 break;
                             case 'psychic':
-                                p3.innerText = 'Tipo: psíquico';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-psychic">psíquico</span>';
                                 break;
                             case 'ice':
-                                p3.innerText = 'Tipo: hielo';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-ice">hielo</span>';
                                 break;
                             case 'dragon':
-                                p3.innerText = 'Tipo: dragón';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-dragon">dragón</span>';
                                 break;
                             case 'dark':
-                                p3.innerText = 'Tipo: siniestro';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-dark">siniestro</span>';
                                 break;
                             case 'fairy':
-                                p3.innerText = 'Tipo: hada';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-fairy">hada</span>';
                                 break;
                             case 'unknown':
-                                p3.innerText = 'Tipo: (?)';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-unknown">(?)</span>';
                                 break;
-                            case 'shadow':
-                                p3.innerText = 'Tipo: oscuro';
+                                case 'shadow':
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-shadow">oscuro</span>';
+                                break;
+                            case 'normal':
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-normal">normal</span>';
                                 break;
                             default:
-                                p3.innerText = 'Tipo: ' + pokemon.types[0].type.name;
+                                p3.innerHTML = 'Tipo: ' + pokemon.types[0].type.name;
                                 break;
                         }
 
                         switch (pokemon.types[1].type.name) {
                             case 'fighting':
-                                p3.innerText += ' y lucha';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-fighting">lucha</span>';
                                 break;
                             case 'flying':
-                                p3.innerText += ' y volador';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-flying">volador</span>';
                                 break;
                             case 'poison':
-                                p3.innerText += ' y veneno';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-poison">veneno</span>';
                                 break;
                             case 'ground':
-                                p3.innerText += ' y tierra';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-ground">tierra</span>';
                                 break;
                             case 'rock':
-                                p3.innerText += ' y roca';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-rock">roca</span>';
                                 break;
                             case 'bug':
-                                p3.innerText += ' y bicho';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-bug">bicho</span>';
                                 break;
                             case 'ghost':
-                                p3.innerText += ' y fantasma';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-ghost">fantasma</span>';
                                 break;
                             case 'steel':
-                                p3.innerText += ' y acero';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-steel">acero</span>';
                                 break;
                             case 'fire':
-                                p3.innerText += ' y fuego';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-fire">fuego</span>';
                                 break;
                             case 'water':
-                                p3.innerText += ' y agua';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-water">agua</span>';
                                 break;
                             case 'grass':
-                                p3.innerText += ' y planta';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-grass">planta</span>';
                                 break;
                             case 'electric':
-                                p3.innerText += ' y eléctrico';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-electric">eléctrico</span>';
                                 break;
                             case 'psychic':
-                                p3.innerText += ' y psíquico';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-psychic">psíquico</span>';
                                 break;
                             case 'ice':
-                                p3.innerText += ' y hielo';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-ice">hielo</span>';
                                 break;
                             case 'dragon':
-                                p3.innerText += ' y dragón';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-dragon">dragón</span>';
                                 break;
                             case 'dark':
-                                p3.innerText += ' y siniestro';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-dark">siniestro</span>';
                                 break;
                             case 'fairy':
-                                p3.innerText += ' y hada';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-fairy">hada</span>';
                                 break;
                             case 'unknown':
-                                p3.innerText += ' y (?)';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-unknown">(?)</span>';
                                 break;
                             case 'shadow':
-                                p3.innerText += ' y oscuro';
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-shadow">oscuro</span>';
+                                break;
+                            case 'normal':
+                                p3.innerHTML += ' <span class="badge rounded-pill text-bg-normal">normal</span>';
                                 break;
                             default:
-                                p3.innerText += ' y ' + pokemon.types[1].type.name;
+                                p3.innerHTML += ' ' + pokemon.types[1].type.name;
                                 break;
                         }
                     }
                     else {
                         switch (pokemon.types[0].type.name) {
                             case 'fighting':
-                                p3.innerText = 'Tipo: lucha';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-fighting">lucha</span>';
                                 break;
                             case 'flying':
-                                p3.innerText = 'Tipo: volador';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-flying">volador</span>';
                                 break;
                             case 'poison':
-                                p3.innerText = 'Tipo: veneno';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-poison">veneno</span>';
                                 break;
                             case 'ground':
-                                p3.innerText = 'Tipo: tierra';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-ground">tierra</span>';
                                 break;
                             case 'rock':
-                                p3.innerText = 'Tipo: roca';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-rock">roca</span>';
                                 break;
                             case 'bug':
-                                p3.innerText = 'Tipo: bicho';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-bug">bicho</span>';
                                 break;
                             case 'ghost':
-                                p3.innerText = 'Tipo: fantasma';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-ghost">fantasma</span>';
                                 break;
                             case 'steel':
-                                p3.innerText = 'Tipo: acero';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-steel">acero</span>';
                                 break;
                             case 'fire':
-                                p3.innerText = 'Tipo: fuego';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-fire">fuego</span>';
                                 break;
                             case 'water':
-                                p3.innerText = 'Tipo: agua';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-water">agua</span>';
                                 break;
                             case 'grass':
-                                p3.innerText = 'Tipo: planta';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-grass">planta</span>';
                                 break;
                             case 'electric':
-                                p3.innerText = 'Tipo: eléctrico';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-electric">eléctrico</span>';
                                 break;
                             case 'psychic':
-                                p3.innerText = 'Tipo: psíquico';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-psychic">psíquico</span>';
                                 break;
                             case 'ice':
-                                p3.innerText = 'Tipo: hielo';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-ice">hielo</span>';
                                 break;
                             case 'dragon':
-                                p3.innerText = 'Tipo: dragón';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-dragon">dragón</span>';
                                 break;
                             case 'dark':
-                                p3.innerText = 'Tipo: siniestro';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-dark">siniestro</span>';
                                 break;
                             case 'fairy':
-                                p3.innerText = 'Tipo: hada';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-fairy">hada</span>';
                                 break;
                             case 'unknown':
-                                p3.innerText = 'Tipo: (?)';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-unknown">(?)</span>';
                                 break;
                             case 'shadow':
-                                p3.innerText = 'Tipo: oscuro';
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-shadow">oscuro</span>';
+                                break;
+                            case 'normal':
+                                p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-normal">normal</span>';
                                 break;
                             default:
-                                p3.innerText = 'Tipo: ' + pokemon.types[0].type.name;
+                                p3.innerHTML = 'Tipo: ' + pokemon.types[0].type.name;
                                 break;
                         }
                     }
