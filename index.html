@@ -11,85 +11,102 @@
     <meta property="og:image" content="https://lhezver.github.io/pokeapi_192_square.png">
     <meta property="og:description" content="Frontend HTML5, CSS3 y JavaScript que consume la API PokéAPI">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
-        <style>
-            .text-bg-normal {
-                color: black;
-                background-color: #A8A77A;
-            }
-            .text-bg-fire {
-                color: black;
-                background-color: #EE8130;
-            }
-            .text-bg-water {
-                color: white;
-                background-color: #6390F0;
-            }
-            .text-bg-electric {
-                color: black;
-                background-color: #F7D02C;
-            }
-            .text-bg-grass {
-                color: black;
-                background-color: #7AC74C;
-            }
-            .text-bg-ice {
-                color: black;
-                background-color: #96D9D6;
-            }
-            .text-bg-fighting {
-                color: white;
-                background-color: #C22E28;
-            }
-            .text-bg-poison {
-                color: white;
-                background-color: #A33EA1;
-            }
-            .text-bg-ground {
-                color: black;
-                background-color: #E2BF65;
-            }
-            .text-bg-flying {
-                color: black;
-                background-color: #A98FF3;
-            }
-            .text-bg-psychic {
-                color: white;
-                background-color: #F95587;
-            }
-            .text-bg-bug {
-                color: black;
-                background-color: #A6B91A;
-            }
-            .text-bg-rock {
-                color: black;
-                background-color: #B6A136;
-            }
-            .text-bg-ghost {
-                color: white;
-                background-color: #735797;
-            }
-            .text-bg-dragon {
-                color: white;
-                background-color: #6F35FC;
-            }
-            .text-bg-dark {
-                color: black;
-                background-color: #705746!important;
-            }
-            .text-bg-steel {
-                color: black;
-                background-color: #B7B7CE;
-            }
-            .text-bg-fairy {
-                color: black;
-                background-color: #D685AD;
-            }
-        </style>
+    <style>
+        .text-bg-normal {
+            color: black;
+            background-color: #A8A77A;
+        }
+
+        .text-bg-fire {
+            color: black;
+            background-color: #EE8130;
+        }
+
+        .text-bg-water {
+            color: white;
+            background-color: #6390F0;
+        }
+
+        .text-bg-electric {
+            color: black;
+            background-color: #F7D02C;
+        }
+
+        .text-bg-grass {
+            color: black;
+            background-color: #7AC74C;
+        }
+
+        .text-bg-ice {
+            color: black;
+            background-color: #96D9D6;
+        }
+
+        .text-bg-fighting {
+            color: white;
+            background-color: #C22E28;
+        }
+
+        .text-bg-poison {
+            color: white;
+            background-color: #A33EA1;
+        }
+
+        .text-bg-ground {
+            color: black;
+            background-color: #E2BF65;
+        }
+
+        .text-bg-flying {
+            color: black;
+            background-color: #A98FF3;
+        }
+
+        .text-bg-psychic {
+            color: white;
+            background-color: #F95587;
+        }
+
+        .text-bg-bug {
+            color: black;
+            background-color: #A6B91A;
+        }
+
+        .text-bg-rock {
+            color: black;
+            background-color: #B6A136;
+        }
+
+        .text-bg-ghost {
+            color: white;
+            background-color: #735797;
+        }
+
+        .text-bg-dragon {
+            color: white;
+            background-color: #6F35FC;
+        }
+
+        .text-bg-dark {
+            color: black;
+            background-color: #705746 !important;
+        }
+
+        .text-bg-steel {
+            color: black;
+            background-color: #B7B7CE;
+        }
+
+        .text-bg-fairy {
+            color: black;
+            background-color: #D685AD;
+        }
+    </style>
 </head>
 
 <body>
@@ -102,17 +119,18 @@
 
         <div class="row mb-2">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()"> < </button>
-                <button type="button" id="paginaActual1" class="btn btn-outline-primary" disabled></button>
-                <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
+                <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()">
+                    < </button>
+                        <button type="button" id="paginaActual1" class="btn btn-outline-primary" disabled></button>
+                        <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
 
-                <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle"
-                        data-bs-toggle="dropdown" aria-expanded="false">Índice</button>
-                    <ul id="menu" class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                        <li><a class="dropdown-item" href="#" onclick="SetearPagina(1)">1</a></li>
-                    </ul>
-                </div>
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle"
+                                data-bs-toggle="dropdown" aria-expanded="false">Índice</button>
+                            <ul id="menu" class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <li><a class="dropdown-item" href="#" onclick="SetearPagina(1)">1</a></li>
+                            </ul>
+                        </div>
             </div>
         </div>
 
@@ -122,9 +140,10 @@
 
         <div class="row mb-3 mt-2">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()"> < </button>
-                <button type="button" id="paginaActual2" class="btn btn-outline-primary" disabled></button>
-                <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
+                <button type="button" class="btn btn-outline-primary" onclick="RetrocederPagina()">
+                    < </button>
+                        <button type="button" id="paginaActual2" class="btn btn-outline-primary" disabled></button>
+                        <button type="button" class="btn btn-outline-primary" onclick="AdelantarPagina()"> > </button>
             </div>
         </div>
     </div>
@@ -162,6 +181,9 @@
                     let div2 = document.createElement('div');
                     let img = document.createElement('img');
                     let div3 = document.createElement('div');
+                    let ul = document.createElement('ul');
+                    let li1 = document.createElement('li');
+                    let li2 = document.createElement('li');
                     let p1 = document.createElement('p');
                     let p2 = document.createElement('p');
                     let p3 = document.createElement('p');
@@ -170,6 +192,9 @@
                     div2.className = 'card text-dark bg-light';
                     img.className = 'card-img-top';
                     div3.className = 'card-body';
+                    ul.className = 'list-group list-group-flush';
+                    li1.className = 'list-group-item bg-light';
+                    li2.className = 'list-group-item bg-light';
                     p1.className = 'card-text text-center';
                     p2.className = 'card-text text-center fw-bolder';
                     p3.className = 'card-text text-center';
@@ -235,7 +260,7 @@
                             case 'unknown':
                                 p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-unknown">(?)</span>';
                                 break;
-                                case 'shadow':
+                            case 'shadow':
                                 p3.innerHTML = 'Tipo: <span class="badge rounded-pill text-bg-shadow">oscuro</span>';
                                 break;
                             case 'normal':
@@ -380,9 +405,12 @@
                         }
                     }
 
-                    div3.append(p1);
-                    div3.append(p2);
-                    div3.append(p3);
+                    li1.append(p1);
+                    li2.append(p2);
+                    li2.append(p3);
+                    ul.append(li1);
+                    ul.append(li2);
+                    div3.append(ul);
                     div2.append(img);
                     div2.append(div3);
                     div1.append(div2);
