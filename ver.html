@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Pokémon</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col mt-2 mb-2">
+                <h1 id="nombre" class="text-center"></h1>
+                <h2 id="id" class="text-center"></h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col col-md-3">
+                <div class="card bg-light">
+                    <div id="carouselExampleCaptions" class="carousel carousel-dark slide">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img id="frente"
+                                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+                                    class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img id="atras"
+                                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png"
+                                    class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img id="shinyFrente"
+                                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"
+                                    class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img id="shinyAtras"
+                                    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png"
+                                    class="d-block w-100">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4 mb-2">
+            <div class="col">
+                <ol class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Peso</div>
+                            <p id="peso"></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Altura</div>
+                            <p id="altura"></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Salud</div>
+                            <p id="salud"></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Ataque</div>
+                            <p id="ataque"></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Defensa</div>
+                            <p id="defensa"></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Ataque especial</div>
+                            <p id="ataqueEspecial"></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Defensa especial</div>
+                            <p id="defensaEspecial"></p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Velocidad</div>
+                            <p id="velocidad"></p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const pokemonId = urlParams.get('id');
+
+        fetch('https://pokeapi.co/api/v2/pokemon/' + pokemonId)
+            .then(response => response.json())
+            .then(json => {
+                document.getElementById('id').innerText = '#' + json.id;
+                document.getElementById('nombre').innerText = json.name;
+
+                document.getElementById('frente').src = json.sprites.front_default;
+                document.getElementById('atras').src = json.sprites.back_default;
+                document.getElementById('shinyFrente').src = json.sprites.front_shiny;
+                document.getElementById('shinyAtras').src = json.sprites.back_shiny;
+
+                document.getElementById('peso').innerText = agregarComa(json.weight) + ' kg';
+                document.getElementById('altura').innerText = agregarComa(json.height) + ' m';
+
+                document.getElementById('salud').innerText = json.stats[0].base_stat;
+                document.getElementById('ataque').innerText = json.stats[1].base_stat;
+                document.getElementById('defensa').innerText = json.stats[2].base_stat;
+                document.getElementById('ataqueEspecial').innerText = json.stats[3].base_stat;
+                document.getElementById('defensaEspecial').innerText = json.stats[4].base_stat;
+                document.getElementById('velocidad').innerText = json.stats[5].base_stat;
+            });
+
+        function agregarComa(numero) {
+            let numeroArray = numero.toString().split('');
+            numeroArray.splice(numeroArray.length - 1, 0, ',');
+            numero = numeroArray.join('');
+
+            if (numero.length == 2) {
+                numero = '0' + numero;
+            }
+
+            return numero;
+        }
+    </script>
+</body>
+
+</html>
