@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ver Pokémon</title>
+    <link rel="icon" href="https://lhezver.github.io/pokeapi_192_square.png">
+    <meta property="og:title" content="PokéAPI">
+    <meta property="og:image" content="https://lhezver.github.io/pokeapi_192_square.png">
+    <meta property="og:description" content="Frontend HTML5, CSS3 y JavaScript que consume la API PokéAPI">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -14,7 +18,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mb-5">
         <div class="row">
             <div class="col mt-2 mb-2">
                 <h1 id="nombre" class="text-center"></h1>
@@ -89,39 +93,51 @@
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
+                        <div class="ms-2 me-auto w-100">
                             <div class="fw-bold">Salud</div>
-                            <p id="salud"></p>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
+                                <div id="saludprogress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-success">0</div>
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
+                        <div class="ms-2 me-auto w-100">
                             <div class="fw-bold">Ataque</div>
-                            <p id="ataque"></p>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
+                                <div id="ataqueprogress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-danger">0</div>
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
+                        <div class="ms-2 me-auto w-100">
                             <div class="fw-bold">Defensa</div>
-                            <p id="defensa"></p>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
+                                <div id="defensaprogress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary">0</div>
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
+                        <div class="ms-2 me-auto w-100">
                             <div class="fw-bold">Ataque especial</div>
-                            <p id="ataqueEspecial"></p>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
+                                <div id="ataqueespecialprogress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-warning text-dark">0</div>
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
+                        <div class="ms-2 me-auto w-100">
                             <div class="fw-bold">Defensa especial</div>
-                            <p id="defensaEspecial"></p>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
+                                <div id="defensaespecialprogress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-info text-dark">0</div>
+                            </div>
                         </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto">
+                        <div class="ms-2 me-auto w-100">
                             <div class="fw-bold">Velocidad</div>
-                            <p id="velocidad"></p>
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0">
+                                <div id="velocidadprogress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-light text-dark">0</div>
+                            </div>
                         </div>
                     </li>
                 </ol>
@@ -147,12 +163,18 @@
                 document.getElementById('peso').innerText = agregarComa(json.weight) + ' kg';
                 document.getElementById('altura').innerText = agregarComa(json.height) + ' m';
 
-                document.getElementById('salud').innerText = json.stats[0].base_stat;
-                document.getElementById('ataque').innerText = json.stats[1].base_stat;
-                document.getElementById('defensa').innerText = json.stats[2].base_stat;
-                document.getElementById('ataqueEspecial').innerText = json.stats[3].base_stat;
-                document.getElementById('defensaEspecial').innerText = json.stats[4].base_stat;
-                document.getElementById('velocidad').innerText = json.stats[5].base_stat;
+                document.getElementById('saludprogress-bar').innerText = json.stats[0].base_stat;
+                document.getElementById('saludprogress-bar').style.width = ((json.stats[0].base_stat / 240) * 100) + '%';
+                document.getElementById('ataqueprogress-bar').innerText = json.stats[1].base_stat;
+                document.getElementById('ataqueprogress-bar').style.width = ((json.stats[1].base_stat / 240) * 100) + '%';
+                document.getElementById('defensaprogress-bar').innerText = json.stats[2].base_stat;
+                document.getElementById('defensaprogress-bar').style.width = ((json.stats[2].base_stat / 240) * 100) + '%';
+                document.getElementById('ataqueespecialprogress-bar').innerText = json.stats[3].base_stat;
+                document.getElementById('ataqueespecialprogress-bar').style.width = ((json.stats[3].base_stat / 240) * 100) + '%';
+                document.getElementById('defensaespecialprogress-bar').innerText = json.stats[4].base_stat;
+                document.getElementById('defensaespecialprogress-bar').style.width = ((json.stats[4].base_stat / 240) * 100) + '%';
+                document.getElementById('velocidadprogress-bar').innerText = json.stats[5].base_stat;
+                document.getElementById('velocidadprogress-bar').style.width = ((json.stats[5].base_stat / 240) * 100) + '%';
             });
 
         function agregarComa(numero) {
