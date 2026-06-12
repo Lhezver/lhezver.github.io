@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clappr</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
     <style>
         * {
@@ -25,13 +26,42 @@
 <body>
     <div id="player"></div>
     <script>
-        var player = new Clappr.Player({
-            source: 'https://ag9wzq.fubo18.com:443/telefe/mono.m3u8?token=1bee227025a2eab24e9122cb833817456febc87e-ea-1781285204-1781267204',
-            parentId: '#player',
-            width: '100%',
-            height: '100%',
-            plugins: [ClapprLevelSelectorPlugin, DashShakaPlayback]
-        });
+        async function inicializarReproductor() {
+            const urlApi = 'https://project-e1ujz.vercel.app/api/post';
+
+            const datosEnviar = {
+                "url": "https://www.mitelefe.com/vidya/tokenize",
+                "body": {
+                    "url": "https://telefeappmitelefe1.akamaized.net/hls/live/2037985/appmitelefe/TOK/master.m3u8"
+                }
+            };
+
+            try {
+                const respuesta = await fetch(urlApi, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(datosEnviar)
+                });
+
+                const data = await respuesta.json();
+
+                const urlTokenizada = data.url;
+
+                var player = new Clappr.Player({
+                    source: urlTokenizada,
+                    parentId: '#player',
+                    width: '100%',
+                    height: '100%',
+                    plugins: [ClapprLevelSelectorPlugin, DashShakaPlayback]
+                });
+            } catch (error) {
+                console.error('Error al obtener la URL tokenizada:', error);
+            }
+        }
+
+        inicializarReproductor();
     </script>
 </body>
 
