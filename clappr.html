@@ -25,43 +25,56 @@
 <body>
     <div id="player"></div>
     <script>
-        async function inicializarReproductor() {
-            const urlApi = 'https://project-e1ujz.vercel.app/api/post';
+    function inicializarReproductor() {
+        var urlApi = 'https://project-e1ujz.vercel.app/api/post';
 
-            const datosEnviar = {
-                "url": "https://www.mitelefe.com/vidya/tokenize",
-                "body": {
-                    "url": "https://telefeappmitelefe1.akamaized.net/hls/live/2037985/appmitelefe/TOK/master.m3u8"
-                }
-            };
-
-            try {
-                const respuesta = await fetch(urlApi, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(datosEnviar)
-                });
-
-                const data = await respuesta.json();
-
-                const urlTokenizada = data.url;
-
-                var player = new Clappr.Player({
-                    source: urlTokenizada,
-                    parentId: '#player',
-                    width: '100%',
-                    height: '100%',
-                    plugins: [ClapprLevelSelectorPlugin, DashShakaPlayback]
-                });
-            } catch (error) {
-                console.error('Error al obtener la URL tokenizada:', error);
+        var datosEnviar = {
+            "url": "https://www.mitelefe.com/vidya/tokenize",
+            "body": {
+                "url": "https://telefeappmitelefe1.akamaized.net/hls/live/2037985/appmitelefe/TOK/master.m3u8"
             }
-        }
+        };
 
-        inicializarReproductor();
-    </script>
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", urlApi, true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            // El estado 4 significa que la petición ha terminado
+            if (xhr.readyState === 4) {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    try {
+                        var data = JSON.parse(xhr.responseText);
+                        var urlTokenizada = data.url;
+
+                        var player = new Clappr.Player({
+                            source: urlTokenizada,
+                            parentId: '#player',
+                            width: '100%',
+                            height: '100%',
+                            plugins: [ClapprLevelSelectorPlugin, DashShakaPlayback]
+                        });
+                    } catch (error) {
+                        console.error('Error al procesar la respuesta:', error);
+                    }
+                } else {
+                    console.error('Error en la petición al servidor. Estado:', xhr.status);
+                }
+            }
+        };
+
+        // Manejar errores de red
+        xhr.onerror = function () {
+            console.error('Error de red al obtener la URL tokenizada');
+        };
+
+        // Enviar la petición
+        xhr.send(JSON.stringify(datosEnviar));
+    }
+
+    inicializarReproductor();
+</script>
 </body>
 
 </html>
