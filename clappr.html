@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clappr</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
     <style>
         * {
@@ -25,56 +26,14 @@
 <body>
     <div id="player"></div>
     <script>
-    function inicializarReproductor() {
-        var urlApi = 'https://project-e1ujz.vercel.app/api/post';
-
-        var datosEnviar = {
-            "url": "https://www.mitelefe.com/vidya/tokenize",
-            "body": {
-                "url": "https://telefeappmitelefe1.akamaized.net/hls/live/2037985/appmitelefe/TOK/master.m3u8"
-            }
-        };
-
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", urlApi, true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-        // Manejar la respuesta del servidor
-        xhr.onreadystatechange = function () {
-            // El estado 4 significa que la petición ha terminado
-            if (xhr.readyState === 4) {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    try {
-                        var data = JSON.parse(xhr.responseText);
-                        var urlTokenizada = data.url;
-
-                        var player = new Clappr.Player({
-                            source: urlTokenizada,
-                            parentId: '#player',
-                            width: '100%',
-                            height: '100%',
-                            plugins: [ClapprLevelSelectorPlugin, DashShakaPlayback]
-                        });
-                    } catch (error) {
-                        console.error('Error al procesar la respuesta:', error);
-                    }
-                } else {
-                    console.error('Error en la petición al servidor. Estado:', xhr.status);
-                }
-            }
-        };
-
-        // Manejar errores de red
-        xhr.onerror = function () {
-            console.error('Error de red al obtener la URL tokenizada');
-        };
-
-        // Enviar la petición
-        xhr.send(JSON.stringify(datosEnviar));
-    }
-
-    inicializarReproductor();
-</script>
+        var player = new Clappr.Player({
+            source: 'https://us-b4-p-e-jn18.cdn.mdstrm.com/live-stream-gdai/6a024684fd4ca6a938f3a118/linear/hls/pa/event/ZTApTmdVQWOhwTvIXtIGXQ/stream/1305311e-0f79-4d26-8c77-5eb526d80570:SCL2/master.m3u8?aid=69dfb44d09ecc98dc876969f&uid=JeaKCLYQ5Bxz9QePDEQMzkiY9E6tqzF5&sid=8FMu0ZZR8NUA4TXN4B9iTTAHWQzZWqkL&pid=Ll0yN94uZ02DRZopd9rVpNvHD3Ldgzu5&pid_dvr=rRS5rE2on9NVtwfpSVEApUsQffbHtukf&ref=https%3A%2F%2Fwww.mitelefe.com%2F&without_cookies=false&listenerid=&dnt=true&access_token=Yv8IBNlVJmwXYi9ZzWpTNw9KI0A6VeCbIpnliMOxB9RNhs96sAfoPkXZ04Bwqc98MJlZuCpx9nU&adInsertionGoogleStreamId=1305311e-0f79-4d26-8c77-5eb526d80570%3ASCL2&CMCD=cid%3D%226a024684fd4ca6a938f3a118%22%2Cmtp%3D500%2Cot%3Dm%2Csf%3Dh%2Csid%3D%22Ll0yN94uZ02DRZopd9rVpNvHD3Ldgzu5%22%2Csu&es=us-b4-p-e-jn18.cdn.mdstrm.com&ote=1782833695517&ot=tEh0xps0nNyBxcIhjeHNhw&proto=https&pz=us',
+            parentId: '#player',
+            width: '100%',
+            height: '100%',
+            plugins: [ClapprLevelSelectorPlugin, DashShakaPlayback]
+        });
+    </script>
 </body>
 
 </html>
