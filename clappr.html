@@ -9,7 +9,10 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js"></script>
     <style>
         * {
             margin: 0px;
@@ -27,11 +30,19 @@
     <div id="player"></div>
     <script>
         var player = new Clappr.Player({
-            source: 'https://us-b4-p-e-jn18.cdn.mdstrm.com/live-stream-gdai/6a024684fd4ca6a938f3a118/linear/hls/pa/event/ZTApTmdVQWOhwTvIXtIGXQ/stream/1305311e-0f79-4d26-8c77-5eb526d80570:SCL2/master.m3u8?aid=69dfb44d09ecc98dc876969f&uid=JeaKCLYQ5Bxz9QePDEQMzkiY9E6tqzF5&sid=8FMu0ZZR8NUA4TXN4B9iTTAHWQzZWqkL&pid=Ll0yN94uZ02DRZopd9rVpNvHD3Ldgzu5&pid_dvr=rRS5rE2on9NVtwfpSVEApUsQffbHtukf&ref=https%3A%2F%2Fwww.mitelefe.com%2F&without_cookies=false&listenerid=&dnt=true&access_token=Yv8IBNlVJmwXYi9ZzWpTNw9KI0A6VeCbIpnliMOxB9RNhs96sAfoPkXZ04Bwqc98MJlZuCpx9nU&adInsertionGoogleStreamId=1305311e-0f79-4d26-8c77-5eb526d80570%3ASCL2&CMCD=cid%3D%226a024684fd4ca6a938f3a118%22%2Cmtp%3D500%2Cot%3Dm%2Csf%3Dh%2Csid%3D%22Ll0yN94uZ02DRZopd9rVpNvHD3Ldgzu5%22%2Csu&es=us-b4-p-e-jn18.cdn.mdstrm.com&ote=1782833695517&ot=tEh0xps0nNyBxcIhjeHNhw&proto=https&pz=us',
+            source: 'https://us-b4-p-e-ml19.cdn.mdstrm.com/live-stream-gdai/6a024684fd4ca6a938f3a118/linear/hls/pa/event/ZTApTmdVQWOhwTvIXtIGXQ/stream/1f100a30-b6a1-4ba4-ac82-be753e58d8ea:SCL2/master.m3u8?aid=69dfb44d09ecc98dc876969f&uid=bOfUGTK2WpMkmJE50lOfer1R7ikBZa2c&sid=nK1FV93nUUJQIoFAX6aMD9hXmoV5sByO&pid=j8pP45bXez6Lj11cXzFz620T9Qeakclp&pid_dvr=zcb3GchD5aGlt1zACTA40cRn6LSrQWyJ&ref=https%3A%2F%2Fwww.mitelefe.com%2F&without_cookies=false&listenerid=&dnt=true&access_token=63H91aa9AHiq51BKRtyaGjviVH5oV16K5XZLjB5oIsEmRDkWHCRZAXSChonHoktN4xxvR76lp8T&adInsertionGoogleStreamId=1f100a30-b6a1-4ba4-ac82-be753e58d8ea%3ASCL2&CMCD=cid%3D%226a024684fd4ca6a938f3a118%22%2Cmtp%3D500%2Cot%3Dm%2Csf%3Dh%2Csid%3D%22j8pP45bXez6Lj11cXzFz620T9Qeakclp%22%2Csu&es=us-b4-p-e-ml19.cdn.mdstrm.com&ote=1782910150161&ot=skfJbwqTLDrDpfFM72fwpg&proto=https&pz=us',
             parentId: '#player',
             width: '100%',
             height: '100%',
-            plugins: [ClapprLevelSelectorPlugin, DashShakaPlayback]
+            plugins: [ClapprLevelSelectorPlugin, DashShakaPlayback, ChromecastPlugin],
+            chromecast: {
+                appId: '9F341885', // ID por defecto de Google, puedes usar el tuyo si tienes una app registrada
+                contentType: 'application/x-mpegURL',
+                media: {
+                    title: 'Título de tu Video',
+                    subtitle: 'Descripción opcional'
+                }
+            }
         });
     </script>
 </body>
