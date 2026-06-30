@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TyC</title>
+    <script src="https://cdn.jsdelivr.net/npm/@clappr/player@0.11.16/dist/clappr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@swarmcloud/hls/p2p-engine.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
+        #player {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="player"></div>
+    <script>
+        const playbackURL = "https://qxjes.vivolatamz.org:443/lb05/tycsports/index.m3u8?token=3dc37d9cd9f64e0fe88d3c03a2ec269970a95727-95-1782870470-1782816470&ip=181.96.175.250";
+        const p2pConfig = {
+            live: true,
+            trackerZone: "us",
+            token: "AUgDeTQSR",
+            sourceUrl: playbackURL
+        };
+
+        const player = new Clappr.Player({
+            parentId: "#player",
+            width: "100%",
+            height: "100%",
+            playback: {
+                hlsjsConfig: {
+                    maxBufferSize: 0,
+                    maxBufferLength: 12,
+                    liveSyncDurationCount: 3
+                }
+            }
+        });
+
+        P2PEngineHls.tryRegisterServiceWorker(p2pConfig).then(() => {
+            player.load({
+                source: playbackURL
+            });
+            const waitForHls = setInterval(() => {
+                const playback = player.core?.getCurrentPlayback?.();
+                if (playback && playback._hls) {
+                    clearInterval(waitForHls);
+                    p2pConfig.hlsjsInstance = playback._hls;
+                    new P2PEngineHls(p2pConfig);
+                }
+            }, 100);
+
+        }).catch(err => {
+            console.error("Error registrando Service Worker:", err);
+        });
+
+    </script>
+
+</body>
+
+</html>
