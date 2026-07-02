@@ -7,6 +7,7 @@
     <title>DSports</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@5.1.12/dist/controls.min.css" />
+    <script defer src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
 
     <style>
         html,
@@ -60,20 +61,22 @@
             const controls = ui.getControls();
             const uiPlayer = controls.getPlayer();
 
-            // UI optimizada para LIVE
             ui.configure({
                 addSeekBar: false,
                 controlPanelElements: [
                     'play_pause',
+                    'time_and_duration',
                     'mute',
                     'volume',
+                    'spacer',
                     'quality',
-                    'fullscreen',
-                    'overflow_menu'
-                ]
+                    'cast',
+                    'fullscreen'
+                ],
+                castReceiverAppId: '07AEE832',
+                castAndroidReceiverCompatible: true
             });
 
-            // Configuración LIVE
             player.configure({
                 streaming: {
                     bufferingGoal: 30,
@@ -81,8 +84,7 @@
                 },
                 drm: {
                     clearKeys: {
-                        "9afc53e82bb24c20a5835a84138f6c13":
-                            "abdd52917474f2342ff04f0d4722123a"
+                        "9afc53e82bb24c20a5835a84138f6c13": "abdd52917474f2342ff04f0d4722123a"
                     }
                 }
             });
